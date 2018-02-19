@@ -1,0 +1,16 @@
+{
+	"name"           : "osmium-tools",
+	"description"    : "Osmium tools",
+	"license"        : "MIT",
+	"author"         : "Vasiliy Isaichkin <vasiliy@isaichkin.ru>",
+	"repository"     : "https://github.com/VasiliyIsaichkin/osmium-tools",
+	"version"        : "0.1.0",
+	"dependencies"   : {
+		"mz"    : "~2.7.0",
+		"mkdirp": "~0.5.1"
+	},
+	"devDependencies": {
+		"sugar": "^2.0.4",
+		"mocha": "^5.0.0"
+	}
+}
