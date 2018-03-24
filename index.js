@@ -27,8 +27,8 @@ tools.isGeneratorFunction = tools._testConstructor.bind(undefined, 'GeneratorFun
  * @returns  {boolean} - result
  */
 tools.isAsyncFunction = (val) => val && (tools._testConstructor('AsyncFunction', val)
-                                         || typeof val.$asyncbind === 'function'
-                                         || (val.toString().indexOf('regeneratorRuntime')) + 1);
+										 || typeof val.$asyncbind === 'function'
+										 || (val.toString().indexOf('regeneratorRuntime')) + 1);
 
 /**
  * Is function anytype-function (normal/generator/async function)?
@@ -60,7 +60,7 @@ tools.isPositiveInteger = (val) => tools.isInteger(val) && (val >= 0);
  * @returns {boolean}
  */
 tools.isIterable = (val) => (tools.isObject(val) ? !!Object.keys(val).length : false)
-                            || (tools.isArray(val) ? !!val.length : false);
+							|| (tools.isArray(val) ? !!val.length : false);
 
 /**
  * Is val JSON and decoded as object
@@ -92,6 +92,8 @@ tools.arrayToObject = (target, toKeys = false) => tools.iterate(target, (row, id
 	}
 }, {});
 
+tools.objectToArray = (target, toKeys = false) => tools.iterate(target, (val, key) => toKeys ? key : val, []);
+
 tools.nop = () => {};
 tools.nop$ = async () => {};
 tools.now = () => new Date().getTime();
@@ -111,8 +113,8 @@ tools.getDataValues = (rows, column) =>
 	tools.iterate(rows || [], (row) => column ? row.dataValues[column] : row.dataValues, []);
 
 tools.iterateKeys = (what, callback, acc = false) => tools.isAsyncFunction(callback)
-                                                     ? (async () => await tools.iterate(what, async (row, key, iteration) => await callback(key, row, iteration), acc))()
-                                                     : tools.iterate(what, (row, key, iteration) => callback(key, row, iteration), acc);
+													 ? (async () => await tools.iterate(what, async (row, key, iteration) => await callback(key, row, iteration), acc))()
+													 : tools.iterate(what, (row, key, iteration) => callback(key, row, iteration), acc);
 
 tools.iterate = (what, callback, acc = false, assign = false) => {
 	let breakFlag = false;
@@ -138,14 +140,14 @@ tools.iterate = (what, callback, acc = false, assign = false) => {
 		if (tools.isUndefined(val)) return;
 		if (tools.isObject(acc)) {
 			ret[iteration.accKeyName] = assign
-			                            ? Object.add(ret[iteration.accKeyName] || {}, val)
-			                            : val;
+										? Object.add(ret[iteration.accKeyName] || {}, val)
+										: val;
 		}
 		if (tools.isArray(acc)) ret.push(val);
 		if (acc === true) ret = ret || val;
 	};
 	return tools.isAsyncFunction(callback)
-	       ? new Promise(async (resolve) => {
+		   ? new Promise(async (resolve) => {
 			if (tools.isArray(what)) {
 				for (let index = 0; index < what.length; ++index) {
 					if (breakFlag) break;
@@ -169,7 +171,7 @@ tools.iterate = (what, callback, acc = false, assign = false) => {
 			}
 			resolve(false);
 		})
-	       : (() => {
+		   : (() => {
 			if (tools.isArray(what)) {
 				for (let index = 0; index < what.length; ++index) {
 					if (breakFlag) break;
