@@ -135,7 +135,7 @@ tools.iterate = (what, callback, acc = false, assign = false) => {
 		pushRet(callback(val, index, iteration), iteration);
 	};
 
-	let ret = tools.isObject(acc) ? {} : tools.isArray(acc) ? [] : acc === true ? false : what;
+	let ret = tools.isObject(acc) ? acc : tools.isArray(acc) ? acc : acc === true ? false : what;
 	let pushRet = (val, iteration) => {
 		if (tools.isUndefined(val)) return;
 		if (tools.isObject(acc)) {
