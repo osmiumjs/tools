@@ -1,7 +1,6 @@
 module.exports = (tools) => {
 	Object.assign(tools, {
 		Mkdirp: require('mkdirp'),
-		crypto: require('crypto'),
 		fs    : require('mz').fs
 	});
 
@@ -47,8 +46,6 @@ module.exports = (tools) => {
 		if (Object.keys(out).length === 0) return false;
 		return out;
 	};
-	tools.isHash = (what, type = 'sha256') =>
-		(new RegExp(`[0-9a-f]{${tools.hash('', type).length}}`, 'i')).test(what);
 
 	tools.exit = (msg, code = 0) => {
 		if (msg) console.log(`   ${msg}`);
@@ -74,9 +71,6 @@ module.exports = (tools) => {
 			return require(`${path}/${name}`);
 		}, {});
 	};
-
-	tools.hash = (what, mode = 'sha256', encoding = 'utf8', digest = 'hex') =>
-		tools.crypto.createHash(mode).update(what, encoding).digest(digest);
 
 	tools.randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
