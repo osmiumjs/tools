@@ -202,9 +202,4 @@ tools.iterateParallel = async (what, callback) =>
 		(async () => await callback(val, key, iter))(), [])
 	);
 
-
-if (process && process.versions && process.versions.uv) {
-	require('./node')(tools);
-}
-
 module.exports = tools;
