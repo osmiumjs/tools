@@ -26,16 +26,13 @@ tools.isGeneratorFunction = tools._testConstructor.bind(undefined, 'GeneratorFun
  * @param {function} - test function
  * @returns  {boolean} - result
  */
-async function testFn() {
-
-}
 
 tools.isAsyncFunction = (val) => val && (tools._testConstructor('AsyncFunction', val)
 	|| typeof val.$asyncbind === 'function'
 	|| (val.toString().indexOf('regeneratorRuntime')) + 1)
 	|| (tools.isObject(global.regeneratorRuntime)
 		&& tools._testConstructor('Function', val)
-		&& val.toString() === testFn.toString());
+		&& val.toString() === tools.nop$.toString());
 
 /**
  * Is function anytype-function (normal/generator/async function)?
