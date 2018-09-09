@@ -33,8 +33,7 @@ async function testFn() {
 tools.isAsyncFunction = (val) => val && (tools._testConstructor('AsyncFunction', val)
 	|| typeof val.$asyncbind === 'function'
 	|| (val.toString().indexOf('regeneratorRuntime')) + 1)
-	|| (window
-		&& tools.isObject(window.regeneratorRuntime)
+	|| (tools.isObject(global.regeneratorRuntime)
 		&& tools._testConstructor('Function', val)
 		&& val.toString() === testFn.toString());
 
