@@ -32,7 +32,7 @@ tools.isAsyncFunction = (val) => val && (tools._testConstructor('AsyncFunction',
 	|| (val.toString().indexOf('regeneratorRuntime')) + 1)
 	|| (tools.isObject(global.regeneratorRuntime)
 		&& tools._testConstructor('Function', val)
-		&& val.toString() === tools.nop$.toString());
+		&& val.toString().replace(/\n/gi, '').replace(/ /gi, '').replace(/_/gi, '') === tools.nop$.toString().replace(/\n/gi, '').replace(/ /gi, '').replace(/_/gi, ''));
 
 /**
  * Is function anytype-function (normal/generator/async function)?
