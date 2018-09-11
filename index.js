@@ -27,12 +27,11 @@ tools.isGeneratorFunction = tools._testConstructor.bind(undefined, 'GeneratorFun
  * @returns  {boolean} - result
  */
 
-tools.isAsyncFunction = (val) => val && (tools._testConstructor('AsyncFunction', val)
-	|| typeof val.$asyncbind === 'function'
-	|| (val.toString().indexOf('regeneratorRuntime')) + 1)
-	|| (tools.isObject(global.regeneratorRuntime)
-		&& tools._testConstructor('Function', val)
-		&& val.toString().replace(/\n/gi, '').replace(/ /gi, '').replace(/_/gi, '') === tools.nop$.toString().replace(/\n/gi, '').replace(/ /gi, '').replace(/_/gi, ''));
+tools.isAsyncFunction = (val) => {
+	let afcText = tools.nop$.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
+	return val && (tools._testConstructor('AsyncFunction', val)
+		|| (tools._testConstructor('Function', val) && afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1)); //fast-async monkey-support
+};
 
 /**
  * Is function anytype-function (normal/generator/async function)?
