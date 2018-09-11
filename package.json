@@ -4,7 +4,7 @@
 	"license"        : "MIT",
 	"author"         : "Vasiliy Isaichkin <vasiliy@isaichkin.ru>",
 	"repository"     : "https://github.com/VasiliyIsaichkin/osmium-tools",
-	"version"        : "0.1.11",
+	"version"        : "0.1.12",
 	"dependencies"   : {
 		"mz"    : "~2.7.0",
 		"mkdirp": "~0.5.1"

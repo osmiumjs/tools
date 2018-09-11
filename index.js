@@ -28,9 +28,10 @@ tools.isGeneratorFunction = tools._testConstructor.bind(undefined, 'GeneratorFun
  */
 
 tools.isAsyncFunction = (val) => {
-	let afcText = tools.nop$.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
-	return val && (tools._testConstructor('AsyncFunction', val)
-		|| (tools._testConstructor('Function', val) && afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1)); //fast-async monkey-support
+	if (!val) return false;
+	let afcText = val.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
+	return tools._testConstructor('AsyncFunction', val)
+		|| ((tools._testConstructor('Function', val) && (afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1))); //fast-async monkey-support
 };
 
 /**
