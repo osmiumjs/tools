@@ -1,1 +1,1 @@
-[Docs here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VasiliyIsaichkin/osmium-tools/master/docs/globals.html)
+[Docs here](https://vasiliyisaichkin.github.io/osmium-tools/globals.html)
