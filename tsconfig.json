@@ -1,0 +1,44 @@
+{
+	"compilerOptions": {
+		"target"           : "es2017",
+		"lib"              : [
+			"esnext",
+			"dom",
+			"es2015",
+			"es2017"
+		],
+		"sourceMap"        : true,
+		"module"           : "commonjs",
+		"outDir"           : "dist",
+		"declaration"      : true,
+		"strict"           : true,
+		"resolveJsonModule": true,
+		"esModuleInterop"  : true,
+		"types"            : [
+			"mocha"
+		]
+	},
+	"include"        : [
+		"./src/**/*"
+	],
+	"exclude"        : [
+		"node_modules",
+		"dist",
+		"test"
+	],
+	"typedocOptions" : {
+		"name"                          : "osmium-tools",
+		"mode"                          : "file",
+		"out"                           : "docs",
+		"theme"                         : "./node_modules/typedoc-clarity-theme",
+		"ignoreCompilerErrors"          : true,
+		"target"                        : "es2017",
+		"moduleResolution"              : "node",
+		"preserveConstEnums"            : true,
+		"stripInternal"                 : true,
+		"suppressExcessPropertyErrors"  : true,
+		"suppressImplicitAnyIndexErrors": true,
+		"module"                        : "commonjs",
+		"includes"                      : "./mds/"
+	}
+}
