@@ -68,9 +68,14 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Interfaces</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/iobjectany.html" class="tsd-kind-icon">IObject<wbr>Any</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#tanyarray" class="tsd-kind-icon">TAny<wbr>Array</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#tanyobject" class="tsd-kind-icon">TAny<wbr>Object</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#tanypromise" class="tsd-kind-icon">TAny<wbr>Promise</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#titeratepromiseresult" class="tsd-kind-icon">TIterate<wbr>Promise<wbr>Result</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#titerateresult" class="tsd-kind-icon">TIterate<wbr>Result</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#tstringornumber" class="tsd-kind-icon">TString<wbr>OrNumber</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
@@ -112,6 +117,107 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="tanyarray" class="tsd-anchor"></a>
+					<h3>TAny<wbr>Array</h3>
+					<div class="tsd-signature tsd-kind-icon">TAny<wbr>Array<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L15">index.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Array with any element&#39;s type</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="tanyobject" class="tsd-anchor"></a>
+					<h3>TAny<wbr>Object</h3>
+					<div class="tsd-signature tsd-kind-icon">TAny<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L10">index.ts:10</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Object with any fields</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="tanypromise" class="tsd-anchor"></a>
+					<h3>TAny<wbr>Promise</h3>
+					<div class="tsd-signature tsd-kind-icon">TAny<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L20">index.ts:20</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Promise with any return type</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="titeratepromiseresult" class="tsd-anchor"></a>
+					<h3>TIterate<wbr>Promise<wbr>Result</h3>
+					<div class="tsd-signature tsd-kind-icon">TIterate<wbr>Promise<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L30">index.ts:30</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Promise with all possible iterate return values</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="titerateresult" class="tsd-anchor"></a>
+					<h3>TIterate<wbr>Result</h3>
+					<div class="tsd-signature tsd-kind-icon">TIterate<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#titeratepromiseresult" class="tsd-signature-type">TIteratePromiseResult</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L35">index.ts:35</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>All possible iterate return values (include TIteratePromiseResult for async mode)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="tstringornumber" class="tsd-anchor"></a>
+					<h3>TString<wbr>OrNumber</h3>
+					<div class="tsd-signature tsd-kind-icon">TString<wbr>OrNumber<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L25">index.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>String or number</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="guid" class="tsd-anchor"></a>
@@ -123,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L28">index.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L51">index.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -143,29 +249,23 @@
 					<a name="arraytoobject" class="tsd-anchor"></a>
 					<h3>array<wbr>ToObject</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">array<wbr>ToObject<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, toKeys<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a></li>
+						<li class="tsd-signature tsd-kind-icon">array<wbr>ToObject<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a>, toKeys<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L179">index.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L202">index.ts:202</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an Object out of an Array</p>
-									<p><strong>Usage</strong></p>
-									<pre><code class="language-javascript"><span class="hljs-keyword">const</span> {arrayToObject} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'osmium-tools'</span>);
-<span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span>];
-<span class="hljs-built_in">console</span>.log(arrayToObject(arr)); <span class="hljs-comment">// {'x': 1, 'y': 2, 'z': 3}</span>
-<span class="hljs-built_in">console</span>.log(arrayToObject(arr, <span class="hljs-literal">true</span>)); <span class="hljs-comment">// {'1': 'x', '2': 'y', '3': 'z'} </span></code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>value: <a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> toKeys: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
@@ -173,7 +273,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -187,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L233">index.ts:233</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L256">index.ts:256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -218,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L225">index.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L248">index.ts:248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,13 +342,13 @@
 					<a name="findanddelete" class="tsd-anchor"></a>
 					<h3>find<wbr>And<wbr>Delete</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>And<wbr>Delete<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>And<wbr>Delete<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L363">index.ts:363</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L385">index.ts:385</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -259,7 +359,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>target: <a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h5>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
@@ -274,13 +374,13 @@
 					<a name="findanddeleteall" class="tsd-anchor"></a>
 					<h3>find<wbr>And<wbr>Delete<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>And<wbr>Delete<wbr>All<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>And<wbr>Delete<wbr>All<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L390">index.ts:390</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L412">index.ts:412</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +391,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>target: <a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h5>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
@@ -312,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L70">index.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L93">index.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,7 +440,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L46">index.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L69">index.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L105">index.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L128">index.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -396,7 +496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L56">index.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L79">index.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +524,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L161">index.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L184">index.ts:184</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +552,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L154">index.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L177">index.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,7 +580,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L119">index.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L142">index.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -508,7 +608,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L133">index.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L156">index.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -536,7 +636,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L141">index.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L164">index.ts:164</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L84">index.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L107">index.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -592,7 +692,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L98">index.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L121">index.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -620,7 +720,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L112">index.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L135">index.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -648,7 +748,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L77">index.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L100">index.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -676,7 +776,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L126">index.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L149">index.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -709,7 +809,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L91">index.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L114">index.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -737,7 +837,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L63">index.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L86">index.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -759,13 +859,13 @@
 					<a name="iterate" class="tsd-anchor"></a>
 					<h3>iterate</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">iterate<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, accumulate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span>, assign<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">iterate<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, accumulate<span class="tsd-signature-symbol">?: </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span>, assign<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#titerateresult" class="tsd-signature-type">TIterateResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L253">index.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L276">index.ts:276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -794,13 +894,13 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">Function</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> accumulate: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> accumulate: <a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> assign: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
@@ -808,16 +908,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">boolean</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#titerateresult" class="tsd-signature-type">TIterateResult</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -825,13 +916,13 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 					<a name="iteratekeys" class="tsd-anchor"></a>
 					<h3>iterate<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Keys<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, accumulate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Keys<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, accumulate<span class="tsd-signature-symbol">?: </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#titerateresult" class="tsd-signature-type">TIterateResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L341">index.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L364">index.ts:364</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -842,27 +933,18 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h5>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">Function</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> accumulate: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> accumulate: <a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">boolean</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#titerateresult" class="tsd-signature-type">TIterateResult</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -870,13 +952,13 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 					<a name="iterateparallel" class="tsd-anchor"></a>
 					<h3>iterate<wbr>Parallel</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Parallel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Parallel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#titeratepromiseresult" class="tsd-signature-type">TIteratePromiseResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L353">index.ts:353</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L375">index.ts:375</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -887,7 +969,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>value: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h5>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">Function</span></h5>
@@ -895,7 +977,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#titeratepromiseresult" class="tsd-signature-type">TIteratePromiseResult</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -909,7 +991,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L202">index.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L225">index.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -931,7 +1013,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L208">index.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L231">index.ts:231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -947,23 +1029,17 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 					<a name="objecttoarray" class="tsd-anchor"></a>
 					<h3>object<wbr>ToArray</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">object<wbr>ToArray<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, toKeys<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">object<wbr>ToArray<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, toKeys<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L195">index.ts:195</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L218">index.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Grabs all values / keys from object and creates and <em>Array</em> from them</p>
-									<p><strong>Usage</strong></p>
-									<pre><code class="language-javascript"><span class="hljs-keyword">const</span> {objectToArray} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'osmium-tools'</span>);
-<span class="hljs-keyword">let</span> obj = {<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">20</span>};
-<span class="hljs-built_in">console</span>.log(objectToArray(obj)); <span class="hljs-comment">// [10, 20]</span>
-<span class="hljs-built_in">console</span>.log(objectToArray(obj,  <span class="hljs-literal">true</span>)) <span class="hljs-comment">// ['x', 'y']</span></code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -975,7 +1051,7 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> toKeys: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -983,13 +1059,13 @@ iterate([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
 					<a name="setdefaults" class="tsd-anchor"></a>
 					<h3>set<wbr>Defaults</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Defaults<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Defaults<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a>, name<span class="tsd-signature-symbol">: </span><a href="globals.html#tstringornumber" class="tsd-signature-type">TStringOrNumber</a>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L214">index.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L237">index.ts:237</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1006,10 +1082,10 @@ setDefaults(params, <span class="hljs-string">'y'</span>, <span class="hljs-numb
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <a href="interfaces/iobjectany.html" class="tsd-signature-type">IObjectAny</a></h5>
+									<h5>obj: <a href="globals.html#tanyobject" class="tsd-signature-type">TAnyObject</a></h5>
 								</li>
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>name: <a href="globals.html#tstringornumber" class="tsd-signature-type">TStringOrNumber</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">any</span></h5>
@@ -1023,24 +1099,17 @@ setDefaults(params, <span class="hljs-string">'y'</span>, <span class="hljs-numb
 					<a name="toarray" class="tsd-anchor"></a>
 					<h3>to<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b47e01/src/index.ts#L169">index.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/VasiliyIsaichkin/osmium-tools/blob/6b07dba/src/index.ts#L192">index.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates <em>Array</em> from value or leaves it unchanged if it is already an <em>Array</em></p>
-									<p><strong>Usage</strong></p>
-									<pre><code class="language-javascript"><span class="hljs-keyword">const</span> {toArray} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'osmium-tools'</span>);
-<span class="hljs-keyword">let</span> value = <span class="hljs-string">"value"</span>;
-<span class="hljs-built_in">console</span>.log(toArray(value)); <span class="hljs-comment">// ["value"]</span>
-<span class="hljs-keyword">let</span> arrVal = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-built_in">console</span>.log(toArray(arrVal)); <span class="hljs-comment">// [1, 2, 3]</span></code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1049,7 +1118,7 @@ setDefaults(params, <span class="hljs-string">'y'</span>, <span class="hljs-numb
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#tanyarray" class="tsd-signature-type">TAnyArray</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1065,8 +1134,23 @@ setDefaults(params, <span class="hljs-string">'y'</span>, <span class="hljs-numb
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="interfaces/iobjectany.html" class="tsd-kind-icon">IObject<wbr>Any</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#tanyarray" class="tsd-kind-icon">TAny<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#tanyobject" class="tsd-kind-icon">TAny<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#tanypromise" class="tsd-kind-icon">TAny<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#titeratepromiseresult" class="tsd-kind-icon">TIterate<wbr>Promise<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#titerateresult" class="tsd-kind-icon">TIterate<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#tstringornumber" class="tsd-kind-icon">TString<wbr>OrNumber</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#guid" class="tsd-kind-icon">GUID</a>

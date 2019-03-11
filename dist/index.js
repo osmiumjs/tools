@@ -31,7 +31,7 @@ function _testConstructor(constructorName, value) {
 function isAsyncFunction(value) {
     if (!value)
         return false;
-    let afcText = value.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
+    const afcText = value.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
     return _testConstructor('AsyncFunction', value)
         || ((_testConstructor('Function', value) && (afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1))); //fast-async monkey-support
 }
@@ -150,14 +150,14 @@ function isGUID(value) {
 }
 exports.isGUID = isGUID;
 /**
- * [[include: to-array.md]]
+ * [[include: to-TAnyArray.md]]
  */
 function toArray(value) {
     return isArray(value) ? value : [value];
 }
 exports.toArray = toArray;
 /**
- * [[include: array-to-object.md]]
+ * [[include: TAnyArray-to-object.md]]
  * @param value
  * @param toKeys
  */
@@ -176,7 +176,7 @@ function arrayToObject(value, toKeys) {
 }
 exports.arrayToObject = arrayToObject;
 /**
- * [[include: object-to-array.md]]
+ * [[include: object-to-TAnyArray.md]]
  */
 function objectToArray(value, toKeys) {
     return iterate(value, (val, key) => toKeys ? key : val, []);
@@ -365,7 +365,7 @@ function findAndDelete(target, value) {
         }
     }
     else if (isObject(target)) {
-        let keys = Object.keys(target);
+        const keys = Object.keys(target);
         for (let i = 0; i < keys.length; i++) {
             if (deep_equal_1.default(target[keys[i]], value)) {
                 delete target[keys[i]];

@@ -2,34 +2,41 @@
 	"name"           : "osmium-tools",
 	"description"    : "Osmium tools",
 	"license"        : "MIT",
-	"author"         : "Vasiliy Isaichkin <vasiliy@isaichkin.ru>",
+	"version"        : "0.2.2",
+	"author"         : {
+		"name" : "Vasiliy Isaichkin",
+		"email": "vasiliy@isaichkin.ru>"
+	},
 	"contributors"   : [
-		"SonyaHon <volkov030@gmail.com>"
+		{
+			"name" : "SonyaHon",
+			"email": "volkov030@gmail.com"
+		}
 	],
 	"repository"     : "https://github.com/VasiliyIsaichkin/osmium-tools",
-	"version"        : "0.2.1",
 	"main"           : "./dist/index.js",
 	"scripts"        : {
-		"_build"        : "node_modules/.bin/tsc",
-		"_build_docs"   : "node_modules/.bin/typedoc",
+		"_compile"      : "node_modules/.bin/tsc",
+		"_make_docs"    : "node_modules/.bin/typedoc",
 		"test"          : "node node_modules/mocha/bin/mocha -r node_modules/ts-node/register ./test/test.ts",
 		"build"         : "node ./build/index.js",
 		"prepublishOnly": "npm run build"
+	},
+	"dependencies"   : {
+		"@types/deep-equal": "^1.0.1",
+		"deep-equal"       : "^1.0.1"
 	},
 	"devDependencies": {
 		"@types/chai"          : "^4.1.7",
 		"@types/mocha"         : "^5.2.6",
 		"chai"                 : "^4.2.0",
 		"fs-extra"             : "^7.0.1",
-		"mocha"                : "^6.0.1",
-		"ts-node"              : "^8.0.2",
-		"typedoc-clarity-theme": "^1.1.0",
-		"highlight.js"         : "9.14.2",
+		"highlight.js"         : "^9.15.6",
+		"mocha"                : "^6.0.2",
+		"terminal-kit"         : "^1.27.0",
+		"ts-node"              : "^8.0.3",
 		"typedoc"              : "^0.14.2",
+		"typedoc-clarity-theme": "^1.1.0",
 		"typescript"           : "^3.3.3333"
-	},
-	"dependencies"   : {
-		"@types/deep-equal": "^1.0.1",
-		"deep-equal"       : "^1.0.1"
 	}
 }

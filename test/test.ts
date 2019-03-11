@@ -140,7 +140,7 @@ describe('Tools::isPositiveInteger', function () {
 });
 
 describe('Tools::isArray', function () {
-	it('should return true for array', function () {
+	it('should return true for TAnyArray', function () {
 		expect(isArray([])).to.equal(true);
 		expect(isArray([1, 3])).to.equal(true);
 	});
@@ -167,7 +167,7 @@ describe('Tools::isObject', function () {
 });
 
 describe('Tools::isIterable', function () {
-	it('should return true if object or array with non-zero length', function () {
+	it('should return true if object or TAnyArray with non-zero length', function () {
 		expect(isIterable([1, 2])).to.equal(true);
 		expect(isIterable({x: 10})).to.equal(true);
 	});
@@ -262,18 +262,18 @@ describe('Tools::GUID', function () {
 });
 
 describe('Tools::toArray', function () {
-	it('should not touch if already an array', function () {
+	it('should not touch if already an TAnyArray', function () {
 		let arr = [1, 2];
 		expect(toArray(arr)).to.equal(arr);
 	});
-	it('should put value into an array if not an array', function () {
+	it('should put value into an TAnyArray if not an TAnyArray', function () {
 		let i = 1;
 		expect(toArray(i)).to.deep.equal([1]);
 	});
 });
 
 describe('Tools::objectToArray', function () {
-	it('should create array from object', function () {
+	it('should create TAnyArray from object', function () {
 		expect(objectToArray({x: 1, y: 2})).to.deep.equal([1, 2]);
 		expect(objectToArray({x: 1, y: 2}, true)).to.deep.equal(['x', 'y']);
 	});

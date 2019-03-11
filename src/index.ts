@@ -7,9 +7,32 @@ import deepEqual from 'deep-equal';
 /**
  * Object with any fields
  */
-interface IObjectAny {
-	[key: string]: any,
-}
+type TAnyObject = { [key: string]: any };
+
+/**
+ * Array with any element's type
+ */
+type TAnyArray = Array<any>;
+
+/**
+ * Promise with any return type
+ */
+type TAnyPromise = Promise<any>;
+
+/**
+ * String or number
+ */
+type TStringOrNumber = string | number;
+
+/**
+ * Promise with all possible iterate return values
+ */
+type TIteratePromiseResult = Promise<number | undefined | boolean | TAnyObject | TAnyArray>;
+
+/**
+ * All possible iterate return values (include TIteratePromiseResult for async mode)
+ */
+type TIterateResult = number | undefined | boolean | TAnyObject | TAnyArray | TIteratePromiseResult;
 
 /**
  * @ignore
@@ -17,8 +40,8 @@ interface IObjectAny {
  */
 interface IIteration {
 	'break': Function,
-	accKeyName: string | number,
-	key: Function,
+	accKeyName: TStringOrNumber,
+	key: Function
 }
 
 /**
@@ -45,7 +68,7 @@ function _testConstructor(constructorName: string, value: any): boolean {
  */
 function isAsyncFunction(value: any): boolean {
 	if (!value) return false;
-	let afcText = value.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
+	const afcText = value.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
 	return _testConstructor('AsyncFunction', value)
 		|| ((_testConstructor('Function', value) && (afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1))); //fast-async monkey-support
 }
@@ -164,19 +187,19 @@ function isGUID(value: any): boolean {
 
 
 /**
- * [[include: to-array.md]]
+ * [[include: to-TAnyArray.md]]
  */
-function toArray(value: any): Array<any> {
+function toArray(value: any): TAnyArray {
 	return isArray(value) ? value : [value];
 }
 
 
 /**
- * [[include: array-to-object.md]]
+ * [[include: TAnyArray-to-object.md]]
  * @param value
  * @param toKeys
  */
-function arrayToObject(value: Array<any>, toKeys?: boolean | false): IObjectAny {
+function arrayToObject(value: TAnyArray, toKeys?: boolean | false): TAnyObject {
 	return (iterate(value, (row: any, idx: any, iter: IIteration) => {
 		if (toKeys) {
 			if (isInteger(row) || isString(row)) iter.key(idx + 1);
@@ -185,15 +208,15 @@ function arrayToObject(value: Array<any>, toKeys?: boolean | false): IObjectAny 
 			iter.key(row);
 			return idx + 1;
 		}
-	}, {})) as IObjectAny
+	}, {})) as TAnyObject
 }
 
 /**
- * [[include: object-to-array.md]]
+ * [[include: object-to-TAnyArray.md]]
  */
 
-function objectToArray(value: object, toKeys?: boolean | false): Array<any> {
-	return iterate(value, (val: any, key: any) => toKeys ? key : val, []) as Array<any>;
+function objectToArray(value: object, toKeys?: boolean | false): TAnyArray {
+	return iterate(value, (val: any, key: any) => toKeys ? key : val, []) as TAnyArray;
 }
 
 /**
@@ -211,7 +234,7 @@ async function nop$(): Promise<void> {
 /**
  * [[include: set-defaults.md]]
  */
-function setDefaults(obj: IObjectAny, name: string | number, value?: any): object {
+function setDefaults(obj: TAnyObject, name: TStringOrNumber, value?: any): object {
 	if (isUndefined(obj[name])) {
 		obj[name] = value;
 	}
@@ -250,10 +273,10 @@ function log(...msg: any): void {
  * @param accumulate
  * @param assign
  */
-function iterate(value: object | Array<any> | number, callback: Function, accumulate?: Array<any> | object | false, assign?: boolean | false): number | undefined | boolean | IObjectAny | Array<any> {
+function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TAnyArray | object | false, assign?: boolean | false): TIterateResult {
 	let breakFlag: boolean = false;
 
-	function newIteration(index: string | number): IIteration {
+	function newIteration(index: TStringOrNumber): IIteration {
 		let instance = {
 			'break': () => breakFlag = true,
 			accKeyName: index,
@@ -274,26 +297,26 @@ function iterate(value: object | Array<any> | number, callback: Function, accumu
 	let pushRet = (val: any, iteration: any) => {
 		if (isUndefined(val)) return;
 		if (isObject(accumulate)) {
-			(ret as IObjectAny)[iteration.accKeyName] = assign
-				? Object.assign((ret as IObjectAny)[iteration.accKeyName] || {}, val)
+			(ret as TAnyObject)[iteration.accKeyName] = assign
+				? Object.assign((ret as TAnyObject)[iteration.accKeyName] || {}, val)
 				: val;
 		}
-		if (isArray(accumulate)) (ret as Array<any>).push(val);
+		if (isArray(accumulate)) (ret as TAnyArray).push(val);
 		if (accumulate === true) ret = ret || val;
 	};
 	return isAsyncFunction(callback)
 		? new Promise(async (resolve) => {
 			if (isArray(value)) {
-				for (let index = 0; index < (value as Array<any>).length; ++index) {
+				for (let index = 0; index < (value as TAnyArray).length; ++index) {
 					if (breakFlag) break;
-					await iterateInstanceAsync(callback, (value as IObjectAny)[index], index);
+					await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
 				}
 				resolve(ret);
 			}
 			if (isObject(value)) {
 				await iterate(Object.keys(value), async (index: string, _: any, iteration: IIteration) => {
 					if (breakFlag) iteration.break();
-					await iterateInstanceAsync(callback, (value as IObjectAny)[index], index);
+					await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
 				});
 				resolve(ret);
 			}
@@ -308,16 +331,16 @@ function iterate(value: object | Array<any> | number, callback: Function, accumu
 		})
 		: (() => {
 			if (isArray(value)) {
-				for (let index = 0; index < (value as Array<any>).length; ++index) {
+				for (let index = 0; index < (value as TAnyArray).length; ++index) {
 					if (breakFlag) break;
-					iterateInstance(callback, (value as Array<any>)[index], index);
+					iterateInstance(callback, (value as TAnyArray)[index], index);
 				}
 				return ret;
 			}
 			if (isObject(value)) {
 				iterate(Object.keys(value), (index: any, _: any, iteration: IIteration) => {
 					if (breakFlag) iteration.break();
-					iterateInstance(callback, (value as IObjectAny)[index], index);
+					iterateInstance(callback, (value as TAnyObject)[index], index);
 				});
 				return ret;
 			}
@@ -338,20 +361,19 @@ function iterate(value: object | Array<any> | number, callback: Function, accumu
  * @param callback
  * @param accumulate
  */
-function iterateKeys(value: object | Array<any>, callback: Function, accumulate?: Array<any> | object | false): number | undefined | boolean | IObjectAny | Array<any> {
+function iterateKeys(value: object | TAnyArray, callback: Function, accumulate?: TAnyArray | object | false): TIterateResult {
 	return isAsyncFunction(callback)
 		? (async () => await iterate(value, async (row: any, key: any, iteration: IIteration) => await callback(key, row, iteration), accumulate))()
 		: iterate(value, (row: any, key: any, iteration: IIteration) => callback(key, row, iteration), accumulate);
 }
-
 
 /**
  * [[include: iterate-parallel.md]]
  * @param value
  * @param callback
  */
-async function iterateParallel(value: object | Array<any>, callback: Function): Promise<any> {
-	return Promise.all(iterate(value, (val: any, key: any, iter: any) => (async () => await callback(val, key, iter))(), []) as Array<any>);
+async function iterateParallel(value: object | TAnyArray, callback: Function): TIteratePromiseResult {
+	return Promise.all(iterate(value, (val: any, key: any, iter: any) => (async () => await callback(val, key, iter))(), []) as TAnyArray);
 }
 
 /**
@@ -360,25 +382,25 @@ async function iterateParallel(value: object | Array<any>, callback: Function): 
  * @param value
  * @returns true if an element has been deleted, otherwise - false
  */
-function findAndDelete(target: IObjectAny | Array<any>, value: any): boolean {
+function findAndDelete(target: TAnyObject | TAnyArray, value: any): boolean {
 	if (!isIterable(target)) return false;
 	if (isArray(target)) {
 		for (let i = 0; i < target.length; i++) {
-			if (deepEqual((target as Array<any>)[i], value)) {
+			if (deepEqual((target as TAnyArray)[i], value)) {
 				target.splice(i, 1);
 				return true;
 			}
 		}
 	} else if (isObject(target)) {
-		let keys = Object.keys(target);
+		const keys = Object.keys(target);
 		for (let i = 0; i < keys.length; i++) {
-			if (deepEqual((target as IObjectAny)[keys[i]], value)) {
-				delete (target as IObjectAny)[keys[i]];
+			if (deepEqual((target as TAnyObject)[keys[i]], value)) {
+				delete (target as TAnyObject)[keys[i]];
 				return true;
 			}
 		}
 	}
-	return false
+	return false;
 }
 
 /**
@@ -387,7 +409,7 @@ function findAndDelete(target: IObjectAny | Array<any>, value: any): boolean {
  * @param value
  * @returns true if anything has been deleted, otherwise - false
  */
-function findAndDeleteAll(target: IObjectAny | Array<any>, value: any): boolean {
+function findAndDeleteAll(target: TAnyObject | TAnyArray, value: any): boolean {
 	let flag = false;
 	while (findAndDelete(target, value)) {
 		flag = true;
@@ -426,7 +448,7 @@ export {
 	iterateKeys,
 	iterateParallel,
 	arrayToObject,
-	delay as sleep, // just a binding
+	delay as sleep, // alias for sleep
 	findAndDelete,
 	findAndDeleteAll
 };
