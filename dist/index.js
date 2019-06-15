@@ -255,7 +255,7 @@ function iterate(value, callback, accumulate, assign) {
         let iteration = newIteration(index);
         pushRet(callback(val, index, iteration), iteration);
     };
-    let ret = isObject(accumulate) ? accumulate : isArray(accumulate) ? accumulate : accumulate === true ? false : value;
+    let ret = (isObject(accumulate) || isArray(accumulate) || isString(accumulate) || isInteger(accumulate)) ? accumulate : accumulate === false ? false : value;
     let pushRet = (val, iteration) => {
         if (isUndefined(val))
             return;
@@ -266,7 +266,15 @@ function iterate(value, callback, accumulate, assign) {
         }
         if (isArray(accumulate))
             ret.push(val);
-        if (accumulate === true)
+        if (isString(accumulate))
+            ret += val
+                ? isFunction(val.toString)
+                    ? val.toString('utf8')
+                    : val + ''
+                : '';
+        if (isInteger(accumulate))
+            ret += isInteger(val) ? val : parseInt(val);
+        if (accumulate === false)
             ret = ret || val;
     };
     return isAsyncFunction(callback)

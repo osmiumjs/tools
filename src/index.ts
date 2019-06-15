@@ -25,14 +25,19 @@ type TAnyPromise = Promise<any>;
 type TStringOrNumber = string | number;
 
 /**
+ * All possible iterate return values
+ */
+type TIterateDataResult = TStringOrNumber | undefined | boolean | TAnyObject | TAnyArray;
+
+/**
  * Promise with all possible iterate return values
  */
-type TIteratePromiseResult = Promise<number | undefined | boolean | TAnyObject | TAnyArray>;
+type TIteratePromiseResult = Promise<TIterateDataResult>;
 
 /**
  * All possible iterate return values (include TIteratePromiseResult for async mode)
  */
-type TIterateResult = number | undefined | boolean | TAnyObject | TAnyArray | TIteratePromiseResult;
+type TIterateResult = TIterateDataResult | TIteratePromiseResult;
 
 /**
  * @ignore
@@ -273,7 +278,7 @@ function log(...msg: any): void {
  * @param accumulate
  * @param assign
  */
-function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TAnyArray | object | false, assign?: boolean | false): TIterateResult {
+function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TStringOrNumber | TAnyArray | object | false, assign?: boolean | false): TIterateResult {
 	let breakFlag: boolean = false;
 
 	function newIteration(index: TStringOrNumber): IIteration {
@@ -293,7 +298,8 @@ function iterate(value: object | TAnyArray | number, callback: Function, accumul
 		let iteration = newIteration(index);
 		pushRet(callback(val, index, iteration), iteration);
 	};
-	let ret = isObject(accumulate) ? accumulate : isArray(accumulate) ? accumulate : accumulate === true ? false : value;
+	let ret = (isObject(accumulate) || isArray(accumulate) || isString(accumulate) || isInteger(accumulate)) ? accumulate : accumulate === false ? false : value;
+
 	let pushRet = (val: any, iteration: any) => {
 		if (isUndefined(val)) return;
 		if (isObject(accumulate)) {
@@ -302,7 +308,13 @@ function iterate(value: object | TAnyArray | number, callback: Function, accumul
 				: val;
 		}
 		if (isArray(accumulate)) (ret as TAnyArray).push(val);
-		if (accumulate === true) ret = ret || val;
+		if (isString(accumulate)) (ret as string) += val
+			? isFunction(val.toString)
+				? val.toString('utf8')
+				: val + ''
+			: '';
+		if (isInteger(accumulate)) (ret as number) += isInteger(val) ? val : parseInt(val);
+		if (accumulate === false) ret = ret || val;
 	};
 	return isAsyncFunction(callback)
 		? new Promise(async (resolve) => {

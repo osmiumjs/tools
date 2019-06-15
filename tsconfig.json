@@ -30,7 +30,7 @@
 		"name"                          : "osmium-tools",
 		"mode"                          : "file",
 		"out"                           : "docs",
-		"theme"                         : "./node_modules/typedoc-clarity-theme",
+		"theme"                         : "./node_modules/osmium-typedoc-default-themes",
 		"ignoreCompilerErrors"          : true,
 		"target"                        : "es2017",
 		"moduleResolution"              : "node",

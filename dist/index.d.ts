@@ -16,13 +16,17 @@ declare type TAnyArray = Array<any>;
  */
 declare type TStringOrNumber = string | number;
 /**
+ * All possible iterate return values
+ */
+declare type TIterateDataResult = TStringOrNumber | undefined | boolean | TAnyObject | TAnyArray;
+/**
  * Promise with all possible iterate return values
  */
-declare type TIteratePromiseResult = Promise<number | undefined | boolean | TAnyObject | TAnyArray>;
+declare type TIteratePromiseResult = Promise<TIterateDataResult>;
 /**
  * All possible iterate return values (include TIteratePromiseResult for async mode)
  */
-declare type TIterateResult = number | undefined | boolean | TAnyObject | TAnyArray | TIteratePromiseResult;
+declare type TIterateResult = TIterateDataResult | TIteratePromiseResult;
 /**
  * [[include: guid.md]]
  * @returns {string} GUIDv4 string
@@ -141,7 +145,7 @@ declare function log(...msg: any): void;
  * @param accumulate
  * @param assign
  */
-declare function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TAnyArray | object | false, assign?: boolean | false): TIterateResult;
+declare function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TStringOrNumber | TAnyArray | object | false, assign?: boolean | false): TIterateResult;
 /**
  * [[include: iterate-keys.md]]
  * @param value
