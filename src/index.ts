@@ -310,7 +310,7 @@ function iterate(value: object | TAnyArray | number, callback: Function, accumul
 		if (isArray(accumulate)) (ret as TAnyArray).push(val);
 		if (isString(accumulate)) (ret as string) += val
 			? isFunction(val.toString)
-				? val.toString('utf8')
+				? val.toString(isInteger(val) ? undefined : 'utf8')
 				: val + ''
 			: '';
 		if (isInteger(accumulate)) (ret as number) += isInteger(val) ? val : parseInt(val);

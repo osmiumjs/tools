@@ -269,7 +269,7 @@ function iterate(value, callback, accumulate, assign) {
         if (isString(accumulate))
             ret += val
                 ? isFunction(val.toString)
-                    ? val.toString('utf8')
+                    ? val.toString(isInteger(val) ? undefined : 'utf8')
                     : val + ''
                 : '';
         if (isInteger(accumulate))
