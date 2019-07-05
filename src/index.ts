@@ -149,6 +149,13 @@ function isInteger(value: any): boolean {
 }
 
 /**
+ * Is valuse an Float
+ */
+function isFloat(value: any) {
+	return isNumber(value) && !isInteger(value);
+}
+
+/**
  * [[include: is-positive-integer.md]]
  */
 function isPositiveInteger(value: any): boolean {
@@ -443,6 +450,7 @@ export {
 	isBoolean,
 	isNumber,
 	isInteger,
+	isFloat,
 	isPositiveInteger,
 	isIterable,
 	isJSON,

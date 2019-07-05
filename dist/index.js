@@ -107,6 +107,13 @@ function isInteger(value) {
 }
 exports.isInteger = isInteger;
 /**
+ * Is valuse an Float
+ */
+function isFloat(value) {
+    return isNumber(value) && !isInteger(value);
+}
+exports.isFloat = isFloat;
+/**
  * [[include: is-positive-integer.md]]
  */
 function isPositiveInteger(value) {

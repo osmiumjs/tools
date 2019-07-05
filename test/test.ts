@@ -7,6 +7,7 @@ import {
 	isString,
 	isNumber,
 	isInteger,
+	isFloat,
 	isPositiveInteger,
 	isArray,
 	isObject,
@@ -121,6 +122,20 @@ describe('Tools::isInteger', function () {
 		expect(isInteger(-0.123123)).to.equal(false);
 		expect(isInteger(null)).to.equal(false);
 		expect(isInteger(undefined)).to.equal(false);
+	});
+});
+
+describe('Tools::isFloat', function () {
+	it('should return true for an float', function () {
+		expect(isFloat(0.123)).to.equal(true);
+		expect(isFloat(-0.123)).to.equal(true);
+	});
+	it('should return false if not integer', function () {
+		expect(isFloat(0)).to.equal(false);
+		expect(isFloat(123)).to.equal(false);
+		expect(isFloat(-123)).to.equal(false);
+		expect(isFloat(null)).to.equal(false);
+		expect(isFloat(undefined)).to.equal(false);
 	});
 });
 
