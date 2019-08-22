@@ -61,6 +61,14 @@ function GUID(): string {
 }
 
 /**
+ * Generate 128bit unique id
+ * @param prefix
+ */
+function UID(prefix: string = '') {
+	return `${prefix}xxxxxxxxxxxxxxxxxx-xxxxxx`.replace(/[x]/g, () => (Math.random() * 32 | 0).toString(36)[Math.random() >= 0.5 ? 'toUpperCase' : 'toLowerCase']());
+}
+
+/**
  * @ignore
  * @private
  */

@@ -2,7 +2,7 @@
 	"name"           : "osmium-tools",
 	"description"    : "Osmium tools",
 	"license"        : "MIT",
-	"version"        : "0.2.5",
+	"version"        : "0.2.6",
 	"author"         : {
 		"name" : "Vasiliy Isaichkin",
 		"email": "vasiliy@isaichkin.ru"
@@ -27,16 +27,16 @@
 		"deep-equal"       : "^1.0.1"
 	},
 	"devDependencies": {
-		"@types/chai"                  : "^4.1.7",
+		"@types/chai"                  : "^4.2.0",
 		"@types/mocha"                 : "^5.2.7",
 		"chai"                         : "^4.2.0",
-		"fs-extra"                     : "^8.0.1",
-		"highlight.js"                 : "^9.15.8",
-		"mocha"                        : "^6.1.4",
-		"terminal-kit"                 : "^1.28.1",
+		"fs-extra"                     : "^8.1.0",
+		"highlight.js"                 : "^9.15.10",
+		"mocha"                        : "^6.2.0",
+		"terminal-kit"                 : "^1.31.1",
 		"ts-node"                      : "^8.3.0",
 		"osmium-typedoc"               : "^0.15.0-0",
 		"osmium-typedoc-default-themes": "^0.6.0-1",
-		"typescript"                   : "^3.5.2"
+		"typescript"                   : "^3.5.3"
 	}
 }
