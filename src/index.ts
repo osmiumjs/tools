@@ -467,6 +467,7 @@ export {
 	isGUIDv4,
 
 	GUID,
+	UID,
 	toArray,
 	objectToArray,
 	setDefaults,
