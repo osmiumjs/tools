@@ -109,6 +109,13 @@ function isArray(value: any): boolean {
 }
 
 /**
+ * Is value an *Array* with length == 0
+ */
+function isEmptyArray(value: any): boolean {
+	return isArray(value) && value.length === 0;
+}
+
+/**
  * Is value an *object*
  */
 function isObject(value: any): boolean {
@@ -452,6 +459,7 @@ export {
 	isFunction,
 	isUndefined,
 	isArray,
+	isEmptyArray,
 	isObject,
 	isNativeObject,
 	isString,

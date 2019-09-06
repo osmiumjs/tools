@@ -55,6 +55,10 @@ declare function isUndefined(value: any): boolean;
  */
 declare function isArray(value: any): boolean;
 /**
+ * Is value an *Array* with length == 0
+ */
+declare function isEmptyArray(value: any): boolean;
+/**
  * Is value an *object*
  */
 declare function isObject(value: any): boolean;
@@ -183,5 +187,5 @@ declare function findAndDelete(target: TAnyObject | TAnyArray, value: any): bool
  * @returns true if anything has been deleted, otherwise - false
  */
 declare function findAndDeleteAll(target: TAnyObject | TAnyArray, value: any): boolean;
-export { nop, nop$, isAsyncFunction, isFunction, isUndefined, isArray, isObject, isNativeObject, isString, isNull, isBoolean, isNumber, isInteger, isFloat, isPositiveInteger, isIterable, isJSON, isGUID, isGUIDv4, GUID, UID, toArray, objectToArray, setDefaults, log, escapeRegExp, iterate, delay, iterateKeys, iterateParallel, arrayToObject, delay as sleep, // alias for sleep
+export { nop, nop$, isAsyncFunction, isFunction, isUndefined, isArray, isEmptyArray, isObject, isNativeObject, isString, isNull, isBoolean, isNumber, isInteger, isFloat, isPositiveInteger, isIterable, isJSON, isGUID, isGUIDv4, GUID, UID, toArray, objectToArray, setDefaults, log, escapeRegExp, iterate, delay, iterateKeys, iterateParallel, arrayToObject, delay as sleep, // alias for sleep
 findAndDelete, findAndDeleteAll };

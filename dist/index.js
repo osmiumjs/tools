@@ -67,6 +67,13 @@ function isArray(value) {
 }
 exports.isArray = isArray;
 /**
+ * Is value an *Array* with length == 0
+ */
+function isEmptyArray(value) {
+    return isArray(value) && value.length === 0;
+}
+exports.isEmptyArray = isEmptyArray;
+/**
  * Is value an *object*
  */
 function isObject(value) {
