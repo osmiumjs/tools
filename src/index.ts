@@ -123,6 +123,13 @@ function isObject(value: any): boolean {
 }
 
 /**
+ * Is value an *object* and without keys
+ */
+function isEmptyObject(value: any): boolean {
+	return isObject(value) && Object.keys(value).length === 0;
+}
+
+/**
  * Is value a Native *Object*
  */
 function isNativeObject(value: any): boolean {

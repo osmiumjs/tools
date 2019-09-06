@@ -81,6 +81,12 @@ function isObject(value) {
 }
 exports.isObject = isObject;
 /**
+ * Is value an *object* and without keys
+ */
+function isEmptyObject(value) {
+    return isObject(value) && Object.keys(value).length === 0;
+}
+/**
  * Is value a Native *Object*
  */
 function isNativeObject(value) {
