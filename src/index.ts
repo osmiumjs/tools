@@ -4,6 +4,8 @@
 
 import deepEqual from 'deep-equal';
 
+const asyncFunctionPattern = "$TvNd3G0XQ1gN";
+
 /**
  * Object with any fields
  */
@@ -66,7 +68,7 @@ function GUID(): string {
  * @param mask
  */
 function UID(prefix: string = '', mask: string = 'xxxxxxxxxxxxxxxxxx-xxxxxx') {
-	return `${prefix}${mask}`.replace(/[x]/g, () => (Math.random() * 32 | 0).toString(36)[Math.random() >= 0.5 ? 'toUpperCase' : 'toLowerCase']());
+	return `${prefix}${mask}`.replace(/[x]/g, () => (Math.random() * 36 | 0).toString(36)[Math.random() >= 0.5 ? 'toUpperCase' : 'toLowerCase']());
 }
 
 /**
@@ -80,11 +82,11 @@ function _testConstructor(constructorName: string, value: any): boolean {
 /**
  * Is value an *AsyncFunction*
  */
-function isAsyncFunction(value: any): boolean {
+function isAsyncFunction(value: any, asyncPattern: string = ''): boolean {
 	if (!value) return false;
-	const afcText = value.toString().toLocaleLowerCase().replace(/\n/g, '').replace(/ /g, '');
+
 	return _testConstructor('AsyncFunction', value)
-		|| ((_testConstructor('Function', value) && (afcText.slice(afcText.indexOf('{')).indexOf('returnnewpromise(function($return,$error)') === 1))); //fast-async monkey-support
+		|| ((_testConstructor('Function', value) && value.toString().indexOf(asyncPattern.length > 1 ? asyncPattern : asyncFunctionPattern) > 0));
 }
 
 /**
@@ -495,5 +497,6 @@ export {
 	arrayToObject,
 	delay as sleep, // alias for sleep
 	findAndDelete,
-	findAndDeleteAll
+	findAndDeleteAll,
+	asyncFunctionPattern
 };

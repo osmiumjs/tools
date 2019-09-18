@@ -1,6 +1,7 @@
 /**
  * Tools and utils needed everywhere
  */
+declare const asyncFunctionPattern = "$TvNd3G0XQ1gN";
 /**
  * Object with any fields
  */
@@ -41,7 +42,7 @@ declare function UID(prefix?: string, mask?: string): string;
 /**
  * Is value an *AsyncFunction*
  */
-declare function isAsyncFunction(value: any): boolean;
+declare function isAsyncFunction(value: any, asyncPattern?: string): boolean;
 /**
  * Is value a *Function*
  */
@@ -188,4 +189,4 @@ declare function findAndDelete(target: TAnyObject | TAnyArray, value: any): bool
  */
 declare function findAndDeleteAll(target: TAnyObject | TAnyArray, value: any): boolean;
 export { nop, nop$, isAsyncFunction, isFunction, isUndefined, isArray, isEmptyArray, isObject, isNativeObject, isString, isNull, isBoolean, isNumber, isInteger, isFloat, isPositiveInteger, isIterable, isJSON, isGUID, isGUIDv4, GUID, UID, toArray, objectToArray, setDefaults, log, escapeRegExp, iterate, delay, iterateKeys, iterateParallel, arrayToObject, delay as sleep, // alias for sleep
-findAndDelete, findAndDeleteAll };
+findAndDelete, findAndDeleteAll, asyncFunctionPattern };
