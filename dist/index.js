@@ -308,30 +308,35 @@ function iterate(value, callback, accumulate, assign) {
             ret = ret || val;
     };
     return isAsyncFunction(callback)
-        ? new Promise(async (resolve) => {
-            if (isArray(value)) {
-                for (let index = 0; index < value.length; ++index) {
-                    if (breakFlag)
-                        break;
-                    await iterateInstanceAsync(callback, value[index], index);
+        ? new Promise(async (resolve, reject) => {
+            try {
+                if (isArray(value)) {
+                    for (let index = 0; index < value.length; ++index) {
+                        if (breakFlag)
+                            break;
+                        await iterateInstanceAsync(callback, value[index], index);
+                    }
+                    resolve(ret);
                 }
-                resolve(ret);
-            }
-            if (isObject(value)) {
-                await iterate(Object.keys(value), async (index, _, iteration) => {
-                    if (breakFlag)
-                        iteration.break();
-                    await iterateInstanceAsync(callback, value[index], index);
-                });
-                resolve(ret);
-            }
-            if (isInteger(value)) {
-                for (let index = 0; index < value; ++index) {
-                    if (breakFlag)
-                        break;
-                    await iterateInstanceAsync(callback, index, index);
+                if (isObject(value)) {
+                    await iterate(Object.keys(value), async (index, _, iteration) => {
+                        if (breakFlag)
+                            iteration.break();
+                        await iterateInstanceAsync(callback, value[index], index);
+                    });
+                    resolve(ret);
                 }
-                resolve(ret);
+                if (isInteger(value)) {
+                    for (let index = 0; index < value; ++index) {
+                        if (breakFlag)
+                            break;
+                        await iterateInstanceAsync(callback, index, index);
+                    }
+                    resolve(ret);
+                }
+            }
+            catch (e) {
+                reject(e);
             }
             resolve(false);
         })

@@ -349,27 +349,32 @@ function iterate(value: object | TAnyArray | number, callback: Function, accumul
 		if (accumulate === false) ret = ret || val;
 	};
 	return isAsyncFunction(callback)
-		? new Promise(async (resolve) => {
-			if (isArray(value)) {
-				for (let index = 0; index < (value as TAnyArray).length; ++index) {
-					if (breakFlag) break;
-					await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
+		? new Promise(async (resolve, reject) => {
+			try {
+
+				if (isArray(value)) {
+					for (let index = 0; index < (value as TAnyArray).length; ++index) {
+						if (breakFlag) break;
+						await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
+					}
+					resolve(ret);
 				}
-				resolve(ret);
-			}
-			if (isObject(value)) {
-				await iterate(Object.keys(value), async (index: string, _: any, iteration: IIteration) => {
-					if (breakFlag) iteration.break();
-					await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
-				});
-				resolve(ret);
-			}
-			if (isInteger(value)) {
-				for (let index = 0; index < (value as unknown as number); ++index) {
-					if (breakFlag) break;
-					await iterateInstanceAsync(callback, index, index);
+				if (isObject(value)) {
+					await iterate(Object.keys(value), async (index: string, _: any, iteration: IIteration) => {
+						if (breakFlag) iteration.break();
+						await iterateInstanceAsync(callback, (value as TAnyObject)[index], index);
+					});
+					resolve(ret);
 				}
-				resolve(ret);
+				if (isInteger(value)) {
+					for (let index = 0; index < (value as unknown as number); ++index) {
+						if (breakFlag) break;
+						await iterateInstanceAsync(callback, index, index);
+					}
+					resolve(ret);
+				}
+			} catch (e) {
+				reject(e);
 			}
 			resolve(false);
 		})
