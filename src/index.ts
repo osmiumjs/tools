@@ -42,6 +42,11 @@ type TIteratePromiseResult = Promise<TIterateDataResult>;
 type TIterateResult = TIterateDataResult | TIteratePromiseResult;
 
 /**
+ * Boolean or False
+ */
+type TBooleanOrFalse = boolean | false;
+
+/**
  * @ignore
  * @private
  */
@@ -56,9 +61,10 @@ interface IIteration {
  * @returns {string} GUIDv4 string
  */
 function GUID(): string {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-		let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-		return v.toString(16);
+	const x = 'x';
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+		let r = Math.random() * 16 | 0
+		return (c === x ? r : (r & 0x3 | 0x8)).toString(16);
 	});
 }
 
@@ -100,7 +106,7 @@ function isFunction(value: any): boolean {
  * Is value an *undefined*
  */
 function isUndefined(value: any): boolean {
-	return typeof value === 'undefined';
+	return value === undefined;
 }
 
 /**
@@ -149,7 +155,7 @@ function isString(value: any): boolean {
  * Is value a *null*
  */
 function isNull(value: any): boolean {
-	return Object.prototype.toString.call(value) === '[object Null]';
+	return value === null;
 }
 
 /**
@@ -202,10 +208,10 @@ function isJSON(value: any): boolean {
 	if (!isString(value)) return false;
 	try {
 		const obj: object = JSON.parse(value);
-		return !!obj && typeof obj === 'object';
-	} catch (e) {
+		return true
+	} catch {
+		return false;
 	}
-	return false;
 }
 
 /**
@@ -236,7 +242,7 @@ function toArray(value: any): TAnyArray {
  * @param value
  * @param toKeys
  */
-function arrayToObject(value: TAnyArray, toKeys?: boolean | false): TAnyObject {
+function arrayToObject(value: TAnyArray, toKeys?: TBooleanOrFalse): TAnyObject {
 	return (iterate(value, (row: any, idx: any, iter: IIteration) => {
 		if (toKeys) {
 			if (isInteger(row) || isString(row)) iter.key(idx + 1);
@@ -252,7 +258,7 @@ function arrayToObject(value: TAnyArray, toKeys?: boolean | false): TAnyObject {
  * [[include: object-to-TAnyArray.md]]
  */
 
-function objectToArray(value: object, toKeys?: boolean | false): TAnyArray {
+function objectToArray(value: object, toKeys?: TBooleanOrFalse): TAnyArray {
 	return iterate(value, (val: any, key: any) => toKeys ? key : val, []) as TAnyArray;
 }
 
@@ -290,7 +296,7 @@ function escapeRegExp(value: string): string {
  * Waits for ms via async/await
  * @param ms time to wait or 100
  */
-async function delay(ms?: number): Promise<void> {
+function delay(ms?: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms || 100));
 }
 
@@ -310,7 +316,7 @@ function log(...msg: any): void {
  * @param accumulate
  * @param assign
  */
-function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TStringOrNumber | TAnyArray | object | false, assign?: boolean | false): TIterateResult {
+function iterate(value: object | TAnyArray | number, callback: Function, accumulate?: TStringOrNumber | TAnyArray | object | false, assign?: TBooleanOrFalse): TIterateResult {
 	let breakFlag: boolean = false;
 
 	function newIteration(index: TStringOrNumber): IIteration {
