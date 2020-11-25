@@ -31,7 +31,7 @@
 		"@types/mocha"                 : "^5.2.7",
 		"chai"                         : "^4.2.0",
 		"fs-extra"                     : "^8.1.0",
-		"highlight.js"                 : "^9.15.10",
+		"highlight.js"                 : "^10.1.2",
 		"mocha"                        : "^6.2.0",
 		"osmium-typedoc"               : "^0.15.0-0",
 		"osmium-typedoc-default-themes": "^0.6.0-1",
