@@ -9,12 +9,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 __exportStar(require("./validations"), exports);
 __exportStar(require("./iteraions"), exports);
 __exportStar(require("./tools"), exports);
-const validations = require("./validations");
-const iterations = require("./iteraions");
-const tools = require("./tools");
-exports.default = { ...validations, ...iterations, ...tools };
-//# sourceMappingURL=index.js.map

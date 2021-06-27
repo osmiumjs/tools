@@ -1,9 +1,9 @@
 
 Iterates through an *Object* *Array* or *number*
-  
+
 _Example_
 ```javascript
-const {iterate, delay} = require('osmium-tools');
+const {iterate, delay} = require('@osmium/tools');
 
 let dt = {x: 10, y: 20};
 iterate(dt,  (value, key) => {
@@ -19,10 +19,10 @@ Values, returned in callbacks can be accumulated
 
 _Example_
 ```javascript
-const {iterate, delay} = require('osmium-tools');
+const {iterate, delay} = require('@osmium/tools');
 let arr = iterate({x: 10, y: 20}, (val) => {
 	return val * 2;	
 }, []);
 console.log(arr) // [20, 40]
-``` 
+```
 

@@ -1,8 +1,8 @@
 
-Sets value if it is not defined 
+Sets value if it is not defined
 
 ```javascript
-const {setDefaults} = require('osmium-tools');
+const {setDefaults} = require('@osmium/tools');
 const  params = {x: 10};
 setDefaults(params, 'x', 24);
 console.log(params); // {x: 10}
