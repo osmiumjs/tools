@@ -1,1 +1,1 @@
-tools
+[Documentation](https://osmiumjs.github.io/tools/)
