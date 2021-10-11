@@ -4,11 +4,15 @@ exports.iterateParallelLimit = exports.iterateParallel = exports.iterateKeys = e
 const validation = require("./validations");
 function iterate(value, callback, accumulate, assign) {
     let breakFlag = false;
+    let shift = 0;
     function newIteration(index) {
         let instance = {
             break: () => breakFlag = true,
             accKeyName: index,
-            key: (name) => instance.accKeyName = name
+            key: (name) => instance.accKeyName = name,
+            shift: (pos = 0) => shift = pos,
+            repeat: () => shift = -1,
+            skip: () => shift = 1
         };
         return instance;
     }
@@ -63,6 +67,10 @@ function iterate(value, callback, accumulate, assign) {
                     for (let index = 0; index < value.length; ++index) {
                         if (breakFlag)
                             break;
+                        if (shift) {
+                            index += shift;
+                            shift = 0;
+                        }
                         await iterateInstanceAsync(value[index], index);
                     }
                     resolve(ret);
@@ -72,6 +80,10 @@ function iterate(value, callback, accumulate, assign) {
                         if (breakFlag)
                             iteration.break();
                         await iterateInstanceAsync(value[index], index);
+                        if (shift) {
+                            iteration.shift(shift);
+                            shift = 0;
+                        }
                     });
                     resolve(ret);
                 }
@@ -79,6 +91,10 @@ function iterate(value, callback, accumulate, assign) {
                     for (let index = 0; index < value; ++index) {
                         if (breakFlag)
                             break;
+                        if (shift) {
+                            index += shift;
+                            shift = 0;
+                        }
                         await iterateInstanceAsync(index, index);
                     }
                     resolve(ret);
@@ -94,6 +110,10 @@ function iterate(value, callback, accumulate, assign) {
                 for (let index = 0; index < value.length; ++index) {
                     if (breakFlag)
                         break;
+                    if (shift) {
+                        index += shift;
+                        shift = 0;
+                    }
                     iterateInstance(value[index], index);
                 }
                 return ret;
@@ -103,6 +123,10 @@ function iterate(value, callback, accumulate, assign) {
                     if (breakFlag)
                         iteration.break();
                     iterateInstance(value[index], index);
+                    if (shift) {
+                        iteration.shift(shift);
+                        shift = 0;
+                    }
                 });
                 return ret;
             }
@@ -110,6 +134,10 @@ function iterate(value, callback, accumulate, assign) {
                 for (let index = 0; index < value; ++index) {
                     if (breakFlag)
                         break;
+                    if (shift) {
+                        index += shift;
+                        shift = 0;
+                    }
                     iterateInstance(index, index);
                 }
                 return ret;

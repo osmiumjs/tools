@@ -5,7 +5,10 @@ import {TIterableValue} from './types';
 interface IIteration {
 	break: Function,
 	accKeyName: types.TStringOrNumber,
-	key: Function
+	key: Function,
+	shift: Function,
+	repeat: Function,
+	skip: Function
 }
 
 /** [[include: iterate.md]]
@@ -20,12 +23,16 @@ function iterate<U = any>(value: string, callback: (row: string, index: number, 
 function iterate<U = any>(value: number, callback: (row: number, index: number, iteration: IIteration) => U, accumulate?: types.TAccumulate, assign?: types.TAssign): types.TIterateResult
 function iterate(value: any, callback: (row: any, index: any, iteration: IIteration) => any, accumulate?: types.TAccumulate, assign?: types.TAssign): types.TIterateResult {
 	let breakFlag: boolean = false;
+	let shift: number = 0;
 
 	function newIteration(index: types.TStringOrNumber): IIteration {
-		let instance = {
+		let instance: IIteration = {
 			break     : () => breakFlag = true,
 			accKeyName: index,
-			key       : (name: string) => instance.accKeyName = name
+			key       : (name: string) => instance.accKeyName = name,
+			shift     : (pos = 0) => shift = pos,
+			repeat    : () => shift = -1,
+			skip      : () => shift = 1
 		};
 		return instance;
 	}
@@ -88,6 +95,11 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 				if (validation.isArray(value)) {
 					for (let index = 0; index < (value as Array<any>).length; ++index) {
 						if (breakFlag) break;
+						if (shift) {
+							index += shift;
+							shift = 0;
+						}
+
 						await iterateInstanceAsync(value[index], index);
 					}
 					resolve(ret);
@@ -96,7 +108,13 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 				if (validation.isObject(value)) {
 					await iterate(Object.keys(value), async (index, _: any, iteration: IIteration) => {
 						if (breakFlag) iteration.break();
+
 						await iterateInstanceAsync(value[index], index);
+						if (shift) {
+							iteration.shift(shift);
+							shift = 0;
+						}
+
 					});
 					resolve(ret);
 				}
@@ -104,6 +122,11 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 				if (validation.isInteger(value)) {
 					for (let index = 0; index < value; ++index) {
 						if (breakFlag) break;
+						if (shift) {
+							index += shift;
+							shift = 0;
+						}
+
 						await iterateInstanceAsync(index, index);
 					}
 					resolve(ret);
@@ -117,6 +140,10 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 			if (validation.isArray(value)) {
 				for (let index = 0; index < value.length; ++index) {
 					if (breakFlag) break;
+					if (shift) {
+						index += shift;
+						shift = 0;
+					}
 
 					iterateInstance(value[index], index);
 				}
@@ -128,6 +155,11 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 					if (breakFlag) iteration.break();
 
 					iterateInstance(value [index], index);
+
+					if (shift) {
+						iteration.shift(shift);
+						shift = 0;
+					}
 				});
 				return ret;
 			}
@@ -135,6 +167,10 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 			if (validation.isInteger(value)) {
 				for (let index = 0; index < value; ++index) {
 					if (breakFlag) break;
+					if (shift) {
+						index += shift;
+						shift = 0;
+					}
 
 					iterateInstance(index, index);
 				}

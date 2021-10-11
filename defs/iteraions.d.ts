@@ -3,6 +3,9 @@ interface IIteration {
     break: Function;
     accKeyName: types.TStringOrNumber;
     key: Function;
+    shift: Function;
+    repeat: Function;
+    skip: Function;
 }
 /** [[include: iterate.md]]
  * @param value
