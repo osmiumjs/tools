@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 const asyncFunctionPattern: string = '$TvNd3G0XQ1gN';
 
 function testConstructor(constructorName: string, value: any): boolean {

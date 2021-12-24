@@ -1,6 +1,8 @@
-import * as types from './types';
+// noinspection JSUnusedGlobalSymbols
+
 import * as iterations from './iteraions';
 import * as validations from './validations';
+import {iterate} from './iteraions';
 
 /** [[include: guid.md]]
  *  @returns {string} GUIDv4 string
@@ -24,7 +26,7 @@ function UID(prefix: string = '', mask: string = 'xxxxxxxxxxxxxxxxxx-xxxxxx') {
  *  @param value
  *  @param toKeys
  */
-function arrayToObject(value: types.TAnyArray, toKeys?: boolean | false): types.TAnyObject {
+function arrayToObject(value: Array<any>, toKeys?: boolean | false): { [key: string]: any } {
 	return (iterations.iterate(value, (row: any, idx: number | string, iter) => {
 		if (toKeys) {
 			if (validations.isInteger(row) || validations.isString(row)) iter.key(idx as number + 1);
@@ -35,12 +37,12 @@ function arrayToObject(value: types.TAnyArray, toKeys?: boolean | false): types.
 
 			return idx as number + 1;
 		}
-	}, {})) as types.TAnyObject;
+	}, {}));
 }
 
 /** [[include: object-to-TAnyArray.md]] */
 function objectToArray(value: object, toKeys?: boolean | false): Array<any> {
-	return iterations.iterate(value, (val: any, key: any) => toKeys ? key : val, []) as types.TAnyArray;
+	return iterations.iterate(value, (val: any, key: any) => toKeys ? key : val, []) as Array<any>;
 }
 
 /** [[include: to-TAnyArray.md]] */
@@ -57,7 +59,7 @@ async function nop$(): Promise<void> {
 }
 
 /** [[include: set-defaults.md]] */
-function setDefaults(obj: types.TAnyObject, name: types.TStringOrNumber, value?: any): object {
+function setDefaults(obj: { [key: string]: any }, name: string | number, value?: any): object {
 	if (validations.isUndefined(obj[name])) {
 		obj[name] = value;
 	}
