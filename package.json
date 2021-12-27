@@ -2,7 +2,7 @@
 	"name"           : "@osmium/tools",
 	"description"    : "Osmium tools",
 	"license"        : "MIT",
-	"version"        : "0.5.0",
+	"version"        : "0.5.1",
 	"author"         : {
 		"name" : "Vasiliy Isaichkin",
 		"email": "vasiliy@isaichkin.ru"

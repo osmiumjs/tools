@@ -44,15 +44,7 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 	let breakFlag: boolean = false;
 	let shift: number = 0;
 
-	function newIteration(index: string | number): IIteration {
-		const length = validation.isArray(value) || validation.isString(value)
-		               ? value.length
-		               : validation.isInteger(value)
-		                 ? value
-		                 : validation.isObject(value)
-		                   ? Object.keys(value).length
-		                   : -1;
-
+	function newIteration(index: string | number, length: number): IIteration {
 		const instance: IIteration = {
 			break     : () => breakFlag = true,
 			accKeyName: index,
@@ -65,14 +57,14 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 		return instance;
 	}
 
-	let iterateInstanceAsync = async (val: any, index: string | number) => {
-		let iteration = newIteration(index);
+	let iterateInstanceAsync = async (val: any, index: string | number, length: number) => {
+		let iteration = newIteration(index, length);
 
 		pushRet(await callback(val, index, iteration), iteration);
 	};
 
-	let iterateInstance = (val: any, index: string | number) => {
-		let iteration = newIteration(index);
+	let iterateInstance = (val: any, index: string | number, length: number) => {
+		let iteration = newIteration(index, length);
 
 		pushRet(callback(val, index, iteration), iteration);
 	};
@@ -128,16 +120,17 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 							shift = 0;
 						}
 
-						await iterateInstanceAsync(value[index], index);
+						await iterateInstanceAsync(value[index], index, value.length);
 					}
 					resolve(ret);
 				}
 
 				if (validation.isObject(value)) {
-					await iterate(Object.keys(value), async (index, _: any, iteration: IIteration) => {
+					const objectKeys = Object.keys(value);
+					await iterate(objectKeys, async (index, _: any, iteration: IIteration) => {
 						if (breakFlag) iteration.break();
 
-						await iterateInstanceAsync(value[index], index);
+						await iterateInstanceAsync(value[index], index, objectKeys.length);
 						if (shift) {
 							iteration.shift(shift);
 							shift = 0;
@@ -155,7 +148,7 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 							shift = 0;
 						}
 
-						await iterateInstanceAsync(index, index);
+						await iterateInstanceAsync(index, index, value);
 					}
 					resolve(ret);
 				}
@@ -173,16 +166,17 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 						shift = 0;
 					}
 
-					iterateInstance(value[index], index);
+					iterateInstance(value[index], index, value.length);
 				}
 				return ret;
 			}
 
 			if (validation.isObject(value)) {
-				iterate(Object.keys(value), (index: string | number, _: any, iteration: IIteration) => {
+				const objectKeys = Object.keys(value);
+				iterate(objectKeys, (index: string | number, _: any, iteration: IIteration) => {
 					if (breakFlag) iteration.break();
 
-					iterateInstance(value [index], index);
+					iterateInstance(value [index], index, objectKeys.length);
 
 					if (shift) {
 						iteration.shift(shift);
@@ -200,7 +194,7 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 						shift = 0;
 					}
 
-					iterateInstance(index, index);
+					iterateInstance(index, index, value);
 				}
 				return ret;
 			}
