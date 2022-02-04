@@ -15,10 +15,12 @@ module.exports = {
 		extensions: ['.ts', '.js'],
 	},
 	module : {
-		rules: [{
-			test  : /\.ts$/,
-			loader: 'awesome-typescript-loader'
-		}]
+		rules: [
+			{
+				test  : /\.ts$/,
+				loader: 'ts-loader'
+			}
+		]
 	},
 	plugins: []
 };
