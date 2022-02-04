@@ -88,7 +88,7 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 				  : val;
 		}
 
-		if (validation.isArray(accumulate)) ret.push(val);
+		if (validation.isArray(accumulate)) (ret as [any]).push(val);
 
 		if (validation.isString(accumulate)) {
 			(ret as string)
@@ -234,7 +234,7 @@ function iterateKeys<CbRetType>(value: number, callback: (index: number, row: nu
 function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
 function iterateKeys(value: any, callback: (index: any, row: any, iteration: IIteration) => any, accumulate?: any, assign?: boolean): any {
 	return validation.isAsyncFunction(callback)
-	       ? (async () => await iterate(value, async (row: any, index: string | number, iteration: IIteration) => await callback(index, row, iteration), accumulate, assign))()
+	       ? (async () => iterate(value, async (row: any, index: string | number, iteration: IIteration) => callback(index, row, iteration), accumulate, assign))()
 	       : iterate(value, (row: any, index: string | number, iteration: IIteration) => callback(index, row, iteration), accumulate, assign);
 }
 
@@ -249,7 +249,7 @@ async function iterateParallel<ObjectType, CbRetType>(value: { [key: string]: Ob
 async function iterateParallel<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
 async function iterateParallel(value: any, callback: (v: any, k: any, iteration: IIteration) => any): Promise<any> {
 	return Promise.all(iterate(value, (val: any, key: any, iter: IIteration) =>
-			(() => {(async () => await callback(val, key, iter))();})()
+			(() => {(async () => callback(val, key, iter))();})()
 		, []) as any);
 }
 
@@ -263,17 +263,17 @@ async function iterateParallelLimit(limit: number, value: any, callback: (v: any
 	if (validation.isObject(value)) len = (Object.keys(value)).length;
 	if (len === 0) return [];
 
-	return iterate(Math.ceil(len / limit), async (idx) => {
+	return iterate(Math.ceil(len / limit), async (idx:number) => {
 		let pr = iterate(limit, (val: any, key: any, iter: any) => {
 			if (cnt >= len) return iter.break();
 
 			cnt++;
 
-			const oIdx = ((idx as number) * limit) + key;
+			const oIdx = (idx * limit) + key;
 			const cKey = validation.isObject(value) ? Object.keys(value)[oIdx] : oIdx;
 			const cValue = (value)[cKey];
 
-			return (async () => await callback(cValue, cKey, iter))();
+			return (async () => callback(cValue, cKey, iter))();
 		}, []);
 
 		return Promise.all(pr);
