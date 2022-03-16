@@ -1,7 +1,6 @@
 import * as toolsFull from '../';
 // @ts-ignore
 import * as toolsMin from '../dist/index.min.js';
-
 import {expect} from 'chai';
 import 'mocha';
 
@@ -223,7 +222,10 @@ function doTests(tools: any, title: string) {
 		});
 
 		describe(`${title}::Tools::isJSON`, () => {
-			const dt = JSON.stringify({x: 10, y: 20});
+			const dt = JSON.stringify({
+				x: 10,
+				y: 20
+			});
 
 			it('should return true if value can be parsed to object', () => {
 				expect(tools.isJSON(dt)).to.equal(true);
@@ -284,8 +286,14 @@ function doTests(tools: any, title: string) {
 
 		describe(`${title}::Tools::objectToArray`, () => {
 			it('should create TAnyArray from object', () => {
-				expect(tools.objectToArray({x: 1, y: 2})).to.deep.equal([1, 2]);
-				expect(tools.objectToArray({x: 1, y: 2}, true)).to.deep.equal(['x', 'y']);
+				expect(tools.objectToArray({
+					x: 1,
+					y: 2
+				})).to.deep.equal([1, 2]);
+				expect(tools.objectToArray({
+					x: 1,
+					y: 2
+				}, true)).to.deep.equal(['x', 'y']);
 			});
 		});
 
@@ -297,7 +305,13 @@ function doTests(tools: any, title: string) {
 
 			it('should set not defined props', () => {
 				const obj = {x: 10};
-				expect(tools.setDefaults(obj, 'y', 12)).to.deep.equal({x: 10, y: 12});
+				expect(tools.setDefaults(obj, 'y', 12))
+				.to
+				.deep
+				.equal({
+					x: 10,
+					y: 12
+				});
 			});
 		});
 
@@ -319,7 +333,11 @@ function doTests(tools: any, title: string) {
 			});
 
 			it('should iterate through objects', () => {
-				const arr = (tools.iterate({x: 10, y: 20, z: 30}, (val: any) => val, [])) as Array<any>;
+				const arr = (tools.iterate({
+					x: 10,
+					y: 20,
+					z: 30
+				}, (val: any) => val, [])) as Array<any>;
 				expect(arr.length).to.equal(3);
 			});
 
