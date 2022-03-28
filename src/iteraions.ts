@@ -32,7 +32,7 @@ function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: 
 function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
 function iterate<ObjectType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => void): { [key: string]: ObjectType }
 function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void): { [key: string]: CbRetType }
-function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): { [key: string]: CbRetType }
+function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
 function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
 function iterate(value: string, callback: (row: string, index: number, iteration: IIteration) => void): void
 function iterate<CbRetType>(value: string, callback: (row: string, index: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
@@ -263,7 +263,7 @@ async function iterateParallelLimit(limit: number, value: any, callback: (v: any
 	if (validation.isObject(value)) len = (Object.keys(value)).length;
 	if (len === 0) return [];
 
-	return iterate(Math.ceil(len / limit), async (idx:number) => {
+	return iterate(Math.ceil(len / limit), async (idx: number) => {
 		let pr = iterate(limit, (val: any, key: any, iter: any) => {
 			if (cnt >= len) return iter.break();
 
