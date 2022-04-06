@@ -3,6 +3,7 @@ import * as toolsFull from '../';
 import * as toolsMin from '../dist/index.min.js';
 import {expect} from 'chai';
 import 'mocha';
+import {sortObject} from '../src';
 
 function doTests(tools: any, title: string) {
 	const guid_ok = '458aed41-197b-4d87-9889-bf92ddf1a3c5';
@@ -321,6 +322,43 @@ function doTests(tools: any, title: string) {
 				await tools.delay(300);
 
 				expect(Date.now() - begin).to.be.greaterThan(299);
+			});
+		});
+
+		describe(`${title}::Tools::sortObject`, () => {
+			it('should be correct sorted - not filtred', async () => {
+				const orig = {
+					'12'  : 1,
+					'3'   : 2,
+					4     : 3,
+					'99'  : 4,
+					'asdf': 5
+				};
+				const correct = {
+					'3' : 2,
+					'4' : 3,
+					'12': 1,
+					'99': 4
+				};
+				expect(tools.sortObject(orig)).to.deep.equal(correct);
+			});
+
+			it('should be correct sorted - filtred', async () => {
+				const orig = {
+					'12'  : 1,
+					'3'   : 2,
+					4     : 3,
+					'99'  : 4,
+					'asdf': 5
+				};
+				const correct = {
+					'3'   : 2,
+					'4'   : 3,
+					'12'  : 1,
+					'99'  : 4,
+					'asdf': 5
+				};
+				expect(tools.sortObject(orig, true)).to.deep.equal(correct);
 			});
 		});
 

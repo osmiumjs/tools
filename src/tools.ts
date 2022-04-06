@@ -90,3 +90,14 @@ export function escapeRegExp(value: string): string {
 export async function delay(ms?: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms || 100));
 }
+
+export function sortObject<T extends { [key: string]: any } = { [key: string]: any }>(target: T, onlyNumIdx = false): T {
+	const out: { [key: string]: any } = {};
+	const objKeys = Object.keys(target);
+
+	(onlyNumIdx ? objKeys : objKeys.filter(idx => !isNaN(parseInt(idx)))).forEach((idx) => {
+		out[idx] = target[idx];
+	});
+
+	return out as T;
+}

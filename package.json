@@ -2,7 +2,7 @@
 	"name"           : "@osmium/tools",
 	"description"    : "Osmium tools",
 	"license"        : "MIT",
-	"version"        : "0.5.6",
+	"version"        : "0.5.7",
 	"author"         : {
 		"name" : "Vasiliy Isaichkin",
 		"email": "vasiliy@isaichkin.ru"
@@ -15,7 +15,7 @@
 		"make_docs"     : "typedoc",
 		"test"          : "mocha -r node_modules/ts-node/register ./tests/index.ts",
 		"clean"         : "rimraf dist docs",
-		"clean_full"    : "rimraf dist docs node_modules",
+		"clean:full"    : "rimraf dist docs node_modules",
 		"build"         : "npm run clean && npm run compile && npm run compress && npm run make_docs && npm run test",
 		"prepublishOnly": "npm run build"
 	},
