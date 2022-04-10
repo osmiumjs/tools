@@ -1,5 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 import * as validation from './validations';
+import {mapToArray} from './tools';
 
 interface IIteration {
 	break: Function,
@@ -12,34 +13,36 @@ interface IIteration {
 }
 
 /** [[include: iterate.md]] */
-async function iterate<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<Array<ArrayType>>
-async function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>): Promise<Array<CbRetType>>
+async function iterate<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
 async function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterate<ObjectType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<{ [key: string]: ObjectType }>
-async function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>): Promise<{ [key: string]: CbRetType }>
-async function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterate(value: string, callback: (row: string, index: number, iteration: IIteration) => Promise<void>): Promise<void>
-async function iterate<CbRetType>(value: string, callback: (row: string, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterate<CbRetType>(value: string, callback: (row: string, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
+async function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterate<ObjectType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterate<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterate<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
 async function iterate(value: number, callback: (row: number, index: number, iteration: IIteration) => Promise<void>): Promise<void>
 async function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-function iterate<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => void): Array<ArrayType>
-function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => CbRetType | void): Array<CbRetType>
+async function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterate<MapIndexType, MapValueType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterate<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
+async function iterate<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterate<SetValueType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterate<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
+async function iterate<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+function iterate<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => void): void
 function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
-function iterate<ObjectType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => void): { [key: string]: ObjectType }
-function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void): { [key: string]: CbRetType }
-function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterate<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
-function iterate(value: string, callback: (row: string, index: number, iteration: IIteration) => void): void
-function iterate<CbRetType>(value: string, callback: (row: string, index: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterate<CbRetType>(value: string, callback: (row: string, index: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
+function iterate<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterate<ObjectType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => void): void
+function iterate<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterate<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
 function iterate(value: number, callback: (row: number, index: number, iteration: IIteration) => void): void
 function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
+function iterate<CbRetType>(value: number, callback: (row: number, index: number, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterate<MapIndexType, MapValueType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => void): void
+function iterate<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
+function iterate<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterate<SetValueType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => void): void
+function iterate<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
+function iterate<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
 function iterate(value: any, callback: (row: any, index: any, iteration: IIteration) => any, accumulate?: any, assign?: boolean): any {
 	let breakFlag: boolean = false;
 	let shift: number = 0;
@@ -112,6 +115,10 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 	return validation.isAsyncFunction(callback)
 	       ? new Promise(async (resolve, reject) => {
 			try {
+				if (validation.isSet(value)) {
+					value = [...value];
+				}
+
 				if (validation.isArray(value)) {
 					for (let index = 0; index < (value as Array<any>).length; ++index) {
 						if (breakFlag) break;
@@ -122,7 +129,21 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 
 						await iterateInstanceAsync(value[index], index, value.length);
 					}
-					resolve(ret);
+					return resolve(ret);
+				}
+
+				if (validation.isMap(value)) {
+					const array = mapToArray(value);
+					for (let index = 0; index < array.length; ++index) {
+						if (breakFlag) break;
+						if (shift) {
+							index += shift;
+							shift = 0;
+						}
+
+						await iterateInstanceAsync(array[index][1], array[index][0], array.length);
+					}
+					return resolve(ret);
 				}
 
 				if (validation.isObject(value)) {
@@ -150,7 +171,7 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 
 						await iterateInstanceAsync(index, index, value);
 					}
-					resolve(ret);
+					return resolve(ret);
 				}
 			} catch (e) {
 				reject(e);
@@ -158,6 +179,10 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 			resolve(false);
 		})
 	       : (() => {
+			if (validation.isSet(value)) {
+				value = [...value];
+			}
+
 			if (validation.isArray(value)) {
 				for (let index = 0; index < value.length; ++index) {
 					if (breakFlag) break;
@@ -167,6 +192,20 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 					}
 
 					iterateInstance(value[index], index, value.length);
+				}
+				return ret;
+			}
+
+			if (validation.isMap(value)) {
+				const array = mapToArray(value);
+				for (let index = 0; index < array.length; ++index) {
+					if (breakFlag) break;
+					if (shift) {
+						index += shift;
+						shift = 0;
+					}
+
+					iterateInstance(array[index][1], array[index][0], array.length);
 				}
 				return ret;
 			}
@@ -204,34 +243,36 @@ function iterate(value: any, callback: (row: any, index: any, iteration: IIterat
 }
 
 /** [[include: iterate-keys.md]] */
-async function iterateKeys<ArrayType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<void>): Promise<Array<ArrayType>>
-async function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<CbRetType | void>): Promise<Array<CbRetType>>
+async function iterateKeys<ArrayType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<void>): Promise<void>
 async function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterateKeys<ObjectType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<void>): Promise<{ [key: string]: ObjectType }>
-async function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<CbRetType | void>): Promise<{ [key: string]: CbRetType }>
-async function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterateKeys(value: string, callback: (index: number, row: string, iteration: IIteration) => Promise<void>): Promise<void>
-async function iterateKeys<CbRetType>(value: string, callback: (index: number, row: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterateKeys<CbRetType>(value: string, callback: (index: number, row: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
+async function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateKeys<ObjectType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateKeys<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateKeys<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
 async function iterateKeys(value: number, callback: (index: number, row: number, iteration: IIteration) => Promise<void>): Promise<void>
 async function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-function iterateKeys<ArrayType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => void): Array<ArrayType>
-function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => CbRetType | void): Array<CbRetType>
+async function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateKeys<MapIndexType, MapValueType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateKeys<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
+async function iterateKeys<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateKeys<SetValueType>(value: Set<SetValueType>, callback: (index: number, row: SetValueType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateKeys<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (index: number, row: SetValueType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
+async function iterateKeys<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (index: number, row: SetValueType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+function iterateKeys<ArrayType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => void): void
 function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
-function iterateKeys<ObjectType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => void): { [key: string]: ObjectType }
-function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => CbRetType | void): { [key: string]: CbRetType }
-function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): { [key: string]: CbRetType }
-function iterateKeys<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (index: string, row: ObjectType, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
-function iterateKeys(value: string, callback: (index: number, row: string, iteration: IIteration) => void): void
-function iterateKeys<CbRetType>(value: string, callback: (index: number, row: string, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterateKeys<CbRetType>(value: string, callback: (index: number, row: string, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
+function iterateKeys<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (index: number, row: ArrayType, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterateKeys<ObjectType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => void): void
+function iterateKeys<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterateKeys<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (index: string, row: ObjectType, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
 function iterateKeys(value: number, callback: (index: number, row: number, iteration: IIteration) => void): void
 function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
-function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => CbRetType | void, accumulate: { [key: string]: CbRetType }, assign?: boolean): { [key: string]: CbRetType }
+function iterateKeys<CbRetType>(value: number, callback: (index: number, row: number, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterateKeys<MapIndexType, MapValueType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => void): void
+function iterateKeys<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
+function iterateKeys<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (index: MapIndexType, row: MapValueType, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
+function iterateKeys<SetValueType>(value: Set<SetValueType>, callback: (index: number, row: SetValueType, iteration: IIteration) => void): void
+function iterateKeys<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (index: number, row: SetValueType, iteration: IIteration) => CbRetType | void, accumulate: Array<CbRetType>, assign?: boolean): Array<CbRetType>
+function iterateKeys<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (index: number, ow: SetValueType, iteration: IIteration) => CbRetType | void, accumulate: Record<string | number, CbRetType>, assign?: boolean): Record<string | number, CbRetType>
 function iterateKeys(value: any, callback: (index: any, row: any, iteration: IIteration) => any, accumulate?: any, assign?: boolean): any {
 	return validation.isAsyncFunction(callback)
 	       ? (async () => iterate(value, async (row: any, index: string | number, iteration: IIteration) => callback(index, row, iteration), accumulate, assign))()
@@ -239,39 +280,65 @@ function iterateKeys(value: any, callback: (index: any, row: any, iteration: IIt
 }
 
 /** [[include: iterate-parallel.md]] */
-async function iterateParallel<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<Array<ArrayType>>
-async function iterateParallel<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>): Promise<Array<CbRetType>>
+async function iterateParallel<ArrayType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
 async function iterateParallel<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Array<CbRetType>>
-async function iterateParallel<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterateParallel<ObjectType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<{ [key: string]: ObjectType }>
-async function iterateParallel<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>): Promise<{ [key: string]: CbRetType }>
-async function iterateParallel<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<{ [key: string]: CbRetType }>
-async function iterateParallel<ObjectType, CbRetType>(value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: { [key: string]: CbRetType }, assign?: boolean): Promise<{ [key: string]: CbRetType }>
+async function iterateParallel<ArrayType, CbRetType>(value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<ObjectType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallel<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<ObjectType, CbRetType>(value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<MapIndexType, MapValueType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallel<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<MapIndexType, MapValueType, CbRetType>(value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<SetValueType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallel<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Array<CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
+async function iterateParallel<SetValueType, CbRetType>(value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<CbRetType | void>, accumulate: Record<string | number, CbRetType>, assign?: boolean): Promise<Record<string | number, CbRetType>>
 async function iterateParallel(value: any, callback: (v: any, k: any, iteration: IIteration) => any): Promise<any> {
-	return Promise.all(iterate(value, (val: any, key: any, iter: IIteration) =>
-			(() => {(async () => callback(val, key, iter))();})()
-		, []) as any);
+	return Promise.all(iterate(value, (val: any, key: any, iter: IIteration) => (() => {
+		(async () => callback(val, key, iter))();
+	})(), []) as any);
 }
 
-async function iterateParallelLimit<ArrayType>(limit: number, value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<Array<ArrayType>>
-async function iterateParallelLimit<ObjectType>(limit: number, value: { [key: string]: ObjectType }, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<{ [key: string]: ObjectType }>
-async function iterateParallelLimit(limit: number, value: any, callback: (v: any, k: any, iteration: IIteration) => any): Promise<any> {
+async function iterateParallelLimit<ArrayType>(limit: number, value: Array<ArrayType>, callback: (row: ArrayType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallelLimit<ObjectType>(limit: number, value: Record<string | number, ObjectType>, callback: (row: ObjectType, index: string, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallelLimit<MapIndexType, MapValueType>(limit: number, value: Map<MapIndexType, MapValueType>, callback: (row: MapValueType, index: MapIndexType, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallelLimit<SetValueType>(limit: number, value: Set<SetValueType>, callback: (row: SetValueType, index: number, iteration: IIteration) => Promise<void>): Promise<void>
+async function iterateParallelLimit(limit: number, value: any, callback: (v: any, k: any, iteration: IIteration) => any): Promise<void> {
 	let len: number = 0;
 	let cnt = 0;
 
-	if (validation.isArray(value)) len = (value).length;
+	if (validation.isMap(value)) len = value.size;
+	if (validation.isSet(value)) len = value.size;
+	if (validation.isArray(value)) len = value.length;
 	if (validation.isObject(value)) len = (Object.keys(value)).length;
-	if (len === 0) return [];
+	if (len === 0) return;
 
-	return iterate(Math.ceil(len / limit), async (idx: number) => {
+	await iterate(Math.ceil(len / limit), async (idx: number) => {
 		let pr = iterate(limit, (val: any, key: any, iter: any) => {
 			if (cnt >= len) return iter.break();
 
 			cnt++;
 
 			const oIdx = (idx * limit) + key;
-			const cKey = validation.isObject(value) ? Object.keys(value)[oIdx] : oIdx;
-			const cValue = (value)[cKey];
+
+			let cKey;
+			let cValue;
+
+			if (validation.isObject(value)) {
+				cKey = Object.keys(value)[oIdx];
+				cValue = value[cKey];
+			}
+			if (validation.isArray(value)) {
+				cKey = oIdx;
+				cValue = value[cKey];
+			}
+			if (validation.isMap(value)) {
+				cKey = [...value.keys()][oIdx];
+				cValue = value.get(cKey);
+			}
+			if (validation.isSet(value)) {
+				cKey = oIdx;
+				cValue = [...value][cKey];
+			}
 
 			return (async () => callback(cValue, cKey, iter))();
 		}, []);
@@ -280,7 +347,7 @@ async function iterateParallelLimit(limit: number, value: any, callback: (v: any
 	}, []);
 }
 
-async function iterateChunk<RowType>(size: number, val: { [key: string]: RowType }, cb: (rows: { [key: string]: RowType }, iter: IIteration) => void): Promise<void>
+async function iterateChunk<RowType>(size: number, val: Record<string | number, RowType>, cb: (rows: Record<string | number, RowType>, iter: IIteration) => void): Promise<void>
 async function iterateChunk<RowType>(size: number, val: Array<RowType>, cb: (rows: Array<RowType>, idxs: Array<RowType>, iter: IIteration) => void): Promise<void>
 async function iterateChunk(size: any, val: any, cb: any): Promise<void> {
 	let outArrRow: any[] = [];

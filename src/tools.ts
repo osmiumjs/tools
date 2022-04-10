@@ -101,3 +101,13 @@ export function sortObject<T extends { [key: string]: any } = { [key: string]: a
 
 	return out as T;
 }
+
+export function mapToArray<T = any, K = any>(value: Map<T, K>): Array<[T, K]> {
+	const out = [];
+
+	for (let entry of value) {
+		out.push(entry);
+	}
+
+	return out;
+}

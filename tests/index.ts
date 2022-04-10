@@ -267,6 +267,38 @@ function doTests(tools: any, title: string) {
 			});
 		});
 
+		describe(`${title}::Tools::isMap`, () => {
+			it('should return true if Map', () => {
+				expect(tools.isMap(new Map())).to.equal(true);
+				expect(tools.isMap((new Map()).set(Symbol(), 'test'))).to.equal(true);
+			});
+
+			it('should return falis if not Map', () => {
+				expect(tools.isMap(undefined)).to.equal(false);
+				expect(tools.isMap({some: 1})).to.equal(false);
+				expect(tools.isMap([1, 2, 3])).to.equal(false);
+				expect(tools.isMap(() => {})).to.equal(false);
+				expect(tools.isMap(new Set())).to.equal(false);
+				expect(tools.isMap(Symbol())).to.equal(false);
+			});
+		});
+
+		describe(`${title}::Tools::isSet`, () => {
+			it('should return true if Set', () => {
+				expect(tools.isSet(new Set())).to.equal(true);
+				expect(tools.isSet((new Set()).add('test'))).to.equal(true);
+			});
+
+			it('should return falis if not Set', () => {
+				expect(tools.isSet(undefined)).to.equal(false);
+				expect(tools.isSet({some: 1})).to.equal(false);
+				expect(tools.isSet([1, 2, 3])).to.equal(false);
+				expect(tools.isSet(() => {})).to.equal(false);
+				expect(tools.isSet(new Map())).to.equal(false);
+				expect(tools.isSet(Symbol())).to.equal(false);
+			});
+		});
+
 		describe(`${title}::Tools::GUID`, () => {
 			it('should generate a valid GUIDv4', () => {
 				expect(tools.isGUID(tools.GUID())).to.equal(true);
@@ -307,12 +339,12 @@ function doTests(tools: any, title: string) {
 			it('should set not defined props', () => {
 				const obj = {x: 10};
 				expect(tools.setDefaults(obj, 'y', 12))
-				.to
-				.deep
-				.equal({
-					x: 10,
-					y: 12
-				});
+					.to
+					.deep
+					.equal({
+						x: 10,
+						y: 12
+					});
 			});
 		});
 
