@@ -2,7 +2,7 @@
 import * as validation from './validations';
 import {mapToArray} from './tools';
 
-interface IIteration {
+export interface IIteration {
 	break: Function,
 	accKeyName: string | number,
 	key: Function,
